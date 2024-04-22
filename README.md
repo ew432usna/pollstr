@@ -48,13 +48,13 @@ IoT devices interact with the application through two main JSON endpoints:
 
 - **GET `/poll.json`**: Retrieve a random poll question suitable for IoT devices. Example:
 
-    curl http://localhost:5000/poll.json
-
-
+    ```bash
+       curl http://localhost:5000/poll.json
 
 - **POST `/poll/:id.json`**: Submit a vote for a specific poll option. Example to vote for option 2 on poll ID 0:
 
-    curl -X POST -H "Content-Type: application/json" -d '{"option": 2}' http://localhost:5000/poll/0.json
+    ```bash
+       curl -X POST -H "Content-Type: application/json" -d '{"option": 2}' http://localhost:5000/poll/0.json
 
 ## Contributing
 
