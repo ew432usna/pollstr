@@ -24,6 +24,9 @@ def create_tables():
         "TotalVotes" INTEGER DEFAULT 0,
         PRIMARY KEY("PollID" AUTOINCREMENT)
         );''')
+    conn.execute('''INSERT INTO Poll (Question, AnswerA, AnswerB, AnswerC) VALUES
+            ("Is it Cold", "yes", "no", "ehh");''')
+
     conn.commit()
     conn.close()
 
