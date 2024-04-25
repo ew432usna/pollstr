@@ -12,7 +12,7 @@ def get_db_connection():
 def create_tables():
     conn = get_db_connection()
     # TODO: Complete schema definitions
-    conn.execute('''CREATE TABLE Poll (
+    conn.execute('''CREATE TABLE IF NOT EXISTS Poll (
         PollID INT PRIMARY KEY,
         Question VARCHAR(255),
         AnswerA VARCHAR(100),
