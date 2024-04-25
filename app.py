@@ -37,7 +37,7 @@ def index():
     conn.commit()
     #cur = conn.cursor()
     polls = conn.fetchall() 
-    cur.close()
+    #cur.close()
     conn.close()
 
     return render_template('index.html', polls=polls)
