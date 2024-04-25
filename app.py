@@ -12,7 +12,7 @@ def get_db_connection():
 def create_tables():
     conn = get_db_connection()
     # TODO: Complete schema definitions
-    conn.execute('''CREATE TABLE IF NOT EXISTS "Polls" (
+    conn.execute('''CREATE TABLE IF NOT EXISTS "Poll" (
         "PollID" INTEGER NOT NULL UNIQUE,
         "Question" VARCHAR(255),
         "AnswerA" VARCHAR(100),
@@ -24,6 +24,7 @@ def create_tables():
         "TotalVotes" INTEGER DEFAULT 0,
         PRIMARY KEY("PollID" AUTOINCREMENT)
         );''')
+
     conn.commit()
     conn.close()
 
@@ -34,8 +35,8 @@ def index():
     conn = get_db_connection()
     conn.execute('''SELECT PollID, Question, TotalVotes FROM Poll ORDER BY TotalVotes DESC;''')
     conn.commit()
-    cur = conn.cursor()
-    polls = cur.fetchall() 
+    #cur = conn.cursor()
+    polls = conn.fetchall() 
     cur.close()
     conn.close()
 
