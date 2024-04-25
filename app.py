@@ -24,6 +24,8 @@ def create_tables():
         "TotalVotes" INTEGER DEFAULT 0,
         PRIMARY KEY("PollID" AUTOINCREMENT)
         );''')
+    conn.execute('''INSERT INTO Poll (Question, AnswerA, AnswerB, AnswerC) VALUES
+            ("Is it Cold", "yes", "no", "ehh");''')
 
     conn.commit()
     conn.close()
@@ -35,9 +37,9 @@ def index():
     conn = get_db_connection()
     conn.execute('''SELECT PollID, Question, TotalVotes FROM Poll ORDER BY TotalVotes DESC;''')
     conn.commit()
-    #cur = conn.cursor()
-    polls = conn.fetchall() 
-    #cur.close()
+    cur = conn.cursor()
+    polls = cur.fetchall() 
+    cur.close()
     conn.close()
 
     return render_template('index.html', polls=polls)
