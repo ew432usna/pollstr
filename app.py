@@ -85,17 +85,42 @@ def show_poll(id):
 @app.route('/poll.json', methods=['GET'])
 def get_random_poll():
     # TODO: return a random poll as JSON so the IoT device can display it
-   
-    return jsonify({'id':2,
-                    'question':"What is Dr Donnal's best tie?",
-                    'options':["The Halloween one",
-                               "The Princeton one",
-                               "The one with black and orange"]})
+    conn = get_db_connection()
+    c = conn.cursor()
+    # get all the polls
+    c.execute("SELECT PollID,Question,AnswerA,AnswerB,AnswerC FROM Poll")
+    # pick a random one
+    poll = random.choice(c.fetchall())
+    # unpack the list into the JSON structure the embedded device expects
+    return jsonify({'id':poll[0],
+                    'question':poll[1],
+                    'options':poll[2:]})
 
 @app.route('/poll/<int:id>.json', methods=['POST'])
 def vote_poll(id):
-    # TODO: record a vote for a particular poll and save to the database
+    selected_option = request.json['option'] # A B or C
+    # sanitize the selected option to avoid SQL Injection
+    if selected_option == 'A':
+        option = 'VoteA'
+    elif selected_option =='B':
+        option = 'VoteB'
+    elif selected_option =='C':
+        option='VoteC'
+    else:
+        option='VoteA' # default if a hacker puts something unexpected in
+    print(f"Recording a new vote for {option} on question {id}")
 
+    conn =  get_db_connection()
+    c = conn.cursor()
+    # retrieve the current vote count
+    c.execute(f"SELECT {option},TotalVotes FROM Poll WHERE PollID=?",(id,))
+    vote_count,total_votes = c.fetchone()
+    # increment it
+    vote_count += 1
+    total_votes += 1
+    # save the vote count back to the database
+    c.execute(f"UPDATE Poll SET {option}=?,TotalVotes=? WHERE PollID=?",(vote_count,total_votes,id))
+    conn.commit()
     return jsonify({'status': 'ok'})
 
 if __name__ == '__main__':

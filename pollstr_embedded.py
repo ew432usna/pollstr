@@ -34,11 +34,26 @@ opt = ""
 resp= 0
     
 def vote(idd, opt):
+    print("button pressed!")
+    response = urequests.post(f"https://pollstr.usna.wattsworth.net/poll/{idd}.json", json = {'option': opt})
+    print("vote submitted!")
+    if response.status_code==200:
+        success = True
+    else:
+        success = False
+    response.close()
+    return success
+
+def show_message(msg):
+    # clear the display and show a message on the screen
+    badger.set_pen(15) #white
+    badger.clear() # set the background white
+    badger.set_pen(0)
+    badger.text(msg, 10, 20)
+    badger.update()
     
-    data = f'id: {idd}, option: {opt}'
-    response = urequests.post("https://pollstr.usna.wattsworth.net/poll/{idd}.json", json = data) ## ?????
-    
-    
+
+show_message("Pollstr booting...")
 
 while True:
     
@@ -65,6 +80,8 @@ while True:
     print(opt1)
     print(opt2)
     print(opt3)
+    badger.set_pen(15) #white
+    badger.clear() # set the background white
     badger.set_pen(0)
     badger.text(question, 10, 20)
     badger.text(opt1, 10, 40)
@@ -74,47 +91,31 @@ while True:
 
     
     
-    
+    selected_option = None # whether the vote succeeded
     while True:
-        
         #wait for button press
-        
-        if badger.pressed(badger2040.BUTTON_A):
-            
-            opt = "A"
-            vote(idd, opt)
+        if badger.pressed(badger2040.BUTTON_A):            
+            selected_option='A'
             break
-        
-        elif badger.pressed(badger2040.BUTTON_B):
-        
-            opt = "B"
-            vote(idd, opt)
+        elif badger.pressed(badger2040.BUTTON_B):        
+            selected_option='B'
             break
-        
         elif badger.pressed(badger2040.BUTTON_C):
-        
-            opt = "C"
-            vote(idd, opt)
+            selected_option='C'
             break
+        time.sleep(0.5)
+     
+    show_message("Submitting your vote...")
+    
+    success=vote(idd,selected_option)
+    
+    if success:
+        show_message("Thanks for voting!")
+    else:
+        show_message("Something went wrong :(")
+    
+    time.sleep(2)
+
+
     
   
-    
-    
-        
-    
-    
-    #if resp:
-        
-        #print(f"Button {color} pressed! \n")
-        #badger.set_pen(15) #white
-        #badger.clear() # set the background white
-        #badger.set_pen(0) #black
-        #cheep_msg = f"Update webpage to \n {color}"
-        #print(resp)
-        #data = resp
-        
-        #response = urequests.post(f'https://pollstr.usna.wattsworth.net/poll/{id}.json', json=data) 
-        #response.close()
-        
-        #badger.text(cheep_msg)
-        
