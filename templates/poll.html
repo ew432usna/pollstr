@@ -30,6 +30,28 @@
             transform: translateY(-5px); /* Lift the box slightly on hover */
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
         }
+        .back-button {
+            text-align: center;
+            margin-top: 30px; /* Add space above the button */
+        }
+        .back-button a {
+            text-decoration: none;
+        }
+        .back-button button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: #bfd8ee; /* Light blue background */
+            color: #4c4c4c; /* Dark grey text */
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .back-button button:hover {
+            background-color: #d3e3f2; /* Light blue hover background */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -54,6 +76,11 @@
                 <p>Votes: {{ votes[2] }}</p>
             </div>
         </div>
+    </div>
+    <div class="back-button">
+        <a href="/">
+            <button>Back to Polls</button>
+        </a>
     </div>
 </div>
 </body>
