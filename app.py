@@ -48,13 +48,23 @@ def new_poll():
 
 @app.route('/poll', methods=['POST'])
 def create_poll():
-    # TODO: create a new poll based on the user's submission:
-    # submission has 4 fields: question, option1, option2, and option3
-    # retrieve these values and create a new poll entry in the database
+    # Retrieve values from the user's submission
+    question = request.form['Question']
+    option1 = request.form['AnswerA']
+    option2 = request.form['AnswerB']
+    option3 = request.form['AnswerC']
     
+    # Create a new poll entry in the database
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''INSERT INTO Poll (Question, AnswerA, AnswerB, AnswerC) 
+                      VALUES (?, ?, ?, ?)''', (question, option1, option2, option3))
+    conn.commit()
+    conn.close()
     
-    # redirect back to the index page (/)
+    # Redirect back to the index page
     return redirect('/')
+
 
 @app.route('/poll/<int:id>', methods=['GET'])
 def show_poll(id):
