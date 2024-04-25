@@ -24,8 +24,6 @@ def create_tables():
         "TotalVotes" INTEGER DEFAULT 0,
         PRIMARY KEY("PollID" AUTOINCREMENT)
         );''')
-    conn.execute('''INSERT INTO Poll (Question, AnswerA, AnswerB, AnswerC) VALUES
-            ("Is it Cold", "yes", "no", "ehh");''')
 
     conn.commit()
     conn.close()
@@ -35,13 +33,12 @@ def index():
     # TODO: Retrieve a list of poll id, question, and current vote count, 
     # ordered by vote count descending (most popular first) 
     conn = get_db_connection()
-    conn.execute('''SELECT PollID, Question, TotalVotes FROM Poll ORDER BY TotalVotes DESC;''')
-    conn.commit()
     cur = conn.cursor()
+    cur.execute('''SELECT PollID, Question, TotalVotes FROM Poll ORDER BY TotalVotes DESC;''')
     polls = cur.fetchall() 
     cur.close()
     conn.close()
-
+    print(polls)
     return render_template('index.html', polls=polls)
 
 @app.route('/poll/new', methods=['GET'])
