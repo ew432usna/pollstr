@@ -12,13 +12,16 @@ def get_db_connection():
 def create_tables():
     conn = get_db_connection()
     # TODO: Complete schema definitions
-    conn.execute('''CREATE TABLE IF NOT EXISTS poll (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT
-                        
-                    );''')
-    conn.execute('''CREATE TABLE IF NOT EXISTS vote (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT
-                    );''')
+    conn.execute('''CREATE TABLE Poll (
+        PollID INT PRIMARY KEY,
+        Question VARCHAR(255),
+        AnswerA VARCHAR(100),
+        AnswerB VARCHAR(100),
+        AnswerC VARCHAR(100),
+        VoteA INT,
+        VoteB INT,
+        VoteC INT,
+        TotalVotes INT);''')
     conn.commit()
     conn.close()
 
