@@ -8,8 +8,20 @@
 </head>
 <body>
 <div class="container">
-    <h1>YOUR CODE HERE</h1>
-   {{polls}}
+    <h1>All Polls</h1>
+    <div id="polls">
+        <!-- Polls will be inserted here -->
+        {% for poll in polls %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ poll[1] }}</h5>
+                <p class="card-text">Total Votes: {{ poll[2] }}</p>
+                <a href="/poll/{{ poll[0] }}" class="btn btn-primary">View Poll</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="/poll/new" class="btn btn-success">Add new poll!</a>
 </div>
 </body>
 </html>
