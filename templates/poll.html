@@ -6,30 +6,35 @@
     <title>Poll Details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Additional CSS to center the question */
-        .centered {
-            text-align: center;
+        body {
+            background-color: #fcf9f4; /* Light cream background */
+            font-family: 'Garamond', serif; /* Classic serif font */
+            color: #4c4c4c; /* Dark grey text */
+            margin-top: 50px; /* Add some space from the top */
         }
-        /* Additional CSS to style the option boxes */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem; /* Larger font size for headings */
+            margin-bottom: 30px; /* Add space below the heading */
+        }
         .option-box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            background-color: #f0f8ff; /* Light blue background */
-            transition: background-color 0.3s; /* Smooth transition */
+            border: 1px solid #dcdcdc; /* Light grey border */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #ffffff; /* White background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
         }
         .option-box:hover {
-            background-color: #f2f2f2; /* Light grey background on hover */
-        }
-        body {
-            background-color: cornflowerblue; /* Light blue background */
+            transform: translateY(-5px); /* Lift the box slightly on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1 class="centered">{{ question }}</h1>
+    <h1>{{ question }}</h1>
     <div class="row">
         <div class="col-md-4">
             <div class="option-box">

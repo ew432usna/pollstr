@@ -24,6 +24,7 @@ def create_tables():
         "TotalVotes" INTEGER DEFAULT 0,
         PRIMARY KEY("PollID" AUTOINCREMENT)
         );''')
+
     conn.commit()
     conn.close()
 
@@ -31,12 +32,13 @@ def create_tables():
 def index():
     # TODO: Retrieve a list of poll id, question, and current vote count, 
     # ordered by vote count descending (most popular first) 
-    polls = [
-        # [ID, Question, Total Votes (all choices)]
-        [0,"What is the best ERC elective?",300],
-        [1,"Who will win Army Navy in 2025?",78],
-        [2,"What is Dr Donnal's best tie?", 35]
-    ]
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('''SELECT PollID, Question, TotalVotes FROM Poll ORDER BY TotalVotes DESC;''')
+    polls = cur.fetchall() 
+    cur.close()
+    conn.close()
+    print(polls)
     return render_template('index.html', polls=polls)
 
 @app.route('/poll/new', methods=['GET'])
@@ -46,13 +48,23 @@ def new_poll():
 
 @app.route('/poll', methods=['POST'])
 def create_poll():
-    # TODO: create a new poll based on the user's submission:
-    # submission has 4 fields: question, option1, option2, and option3
-    # retrieve these values and create a new poll entry in the database
+    # Retrieve values from the user's submission
+    question = request.form['Question']
+    option1 = request.form['AnswerA']
+    option2 = request.form['AnswerB']
+    option3 = request.form['AnswerC']
     
+    # Create a new poll entry in the database
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''INSERT INTO Poll (Question, AnswerA, AnswerB, AnswerC) 
+                      VALUES (?, ?, ?, ?)''', (question, option1, option2, option3))
+    conn.commit()
+    conn.close()
     
-    # redirect back to the index page (/)
+    # Redirect back to the index page
     return redirect('/')
+
 
 @app.route('/poll/<int:id>', methods=['GET'])
 def show_poll(id):
