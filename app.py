@@ -32,7 +32,7 @@ def index():
     # TODO: Retrieve a list of poll id, question, and current vote count, 
     # ordered by vote count descending (most popular first) 
     conn = get_db_connection()
-    conn.execute('''SELECT * FROM Poll ORDER BY TotalVotes DESC;''')
+    conn.execute('''SELECT PollID, Question, TotalVotes FROM Poll ORDER BY TotalVotes DESC;''')
     conn.commit()
     cur = conn.cursor()
     polls = cur.fetchall() 
