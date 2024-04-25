@@ -31,12 +31,14 @@ def create_tables():
 def index():
     # TODO: Retrieve a list of poll id, question, and current vote count, 
     # ordered by vote count descending (most popular first) 
-    polls = [
-        # [ID, Question, Total Votes (all choices)]
-        [0,"What is the best ERC elective?",300],
-        [1,"Who will win Army Navy in 2025?",78],
-        [2,"What is Dr Donnal's best tie?", 35]
-    ]
+    conn = get_db_connection()
+    conn.execute('''SELECT * FROM Poll ORDER BY TotalVotes DESC;''')
+    conn.commit()
+    cur = conn.cursor()
+    polls = cur.fetchall() 
+    cur.close()
+    conn.close()
+
     return render_template('index.html', polls=polls)
 
 @app.route('/poll/new', methods=['GET'])
