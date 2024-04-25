@@ -57,10 +57,17 @@ def create_poll():
 @app.route('/poll/<int:id>', methods=['GET'])
 def show_poll(id):
     # TODO: retrieve the specified poll given the id and show the votes for each option
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute("SELECT Question,AnswerA,AnswerB,AnswerC,VoteA,VoteB,VoteC FROM Poll WHERE PollID = ?",[id])
+    pollinfo = c.fetchall()
+    print(pollinfo)
+    print(pollinfo[0][0])
+    conn.close()
     
-    question = "What is Dr Donnal's best tie?"
-    options = ["The Halloween one","The Princeton one","The one with black and orange"]
-    votes = [10,20,5]
+    question = pollinfo[0][0]
+    options = [pollinfo[0][1],pollinfo[0][2],pollinfo[0][3]]
+    votes = [pollinfo[0][4],pollinfo[0][5],pollinfo[0][6]]
     return render_template('poll.html', question=question, options=options, votes=votes)
 
 @app.route('/poll.json', methods=['GET'])
