@@ -5,23 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Polls</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fcf9f4; /* Light cream background */
+            font-family: 'Garamond', serif; /* Classic serif font */
+            color: #4c4c4c; /* Dark grey text */
+            margin-top: 50px; /* Add some space from the top */
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem; /* Larger font size for headings */
+            margin-bottom: 30px; /* Add space below the heading */
+            font-family: Impact, fantasy;
+        }
+        .card {
+            border: 1px solid #17ADB4; /* Light grey border */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #ffffff; /* White background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+            text-align: center; /* Center align the text */
+            text-transform: capitalize; /* Transform text to uppercase */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Lift the card slightly on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+        }
+        .card-title {
+            font-size: 1.5rem; /* Larger font size for title */
+            margin-bottom: 10px; /* Add space below the title */
+        }
+        .card-text {
+            font-size: 1rem; /* Regular font size for text */
+            margin-bottom: 10px; /* Add space below the text */
+        }
+        .btn {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: #17ADB4; /* Light blue background */
+            color: #4c4c4c; /* Dark grey text */
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            background-color: #17acb46a; /* Light blue hover background */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .wrc-logo {
+            width: 15%;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+        }
+        .add-poll-button {
+            margin-bottom: 20px; /* Add space below the button */
+        }
+    </style>
 </head>
 <body>
+    <a href="/">
+        <img src="/static/images/wrc_logo.png" alt="WRC Logo" class="wrc-logo">
+    </a>
 <div class="container">
     <h1>All Polls</h1>
-    <div id="polls">
+    <div class="row row-cols-1 row-cols-md-2">
         <!-- Polls will be inserted here -->
         {% for poll in polls %}
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">{{ poll[1] }}</h5>
-                <p class="card-text">Total Votes: {{ poll[2] }}</p>
-                <a href="/poll/{{ poll[0] }}" class="btn btn-primary">View Poll</a>
+        <div class="col mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ poll[1] }}</h5>
+                    <p class="card-text">Total Votes: {{ poll[2] }}</p>
+                    <a href="/poll/{{ poll[0] }}" class="btn btn-primary">View poll</a>
+                </div>
             </div>
         </div>
         {% endfor %}
     </div>
-    <a href="/poll/new" class="btn btn-success">Add new poll!</a>
+    <div class="text-center add-poll-button">
+        <a href="/poll/new" class="btn btn-success">Add new poll!</a>
+    </div>
 </div>
 </body>
 </html>
