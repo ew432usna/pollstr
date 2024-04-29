@@ -13,14 +13,16 @@
             margin-top: 50px; /* Add some space from the top */
             opacity: 1; /* Adjust the opacity as desired */
         }
-
         h1 {
             text-align: center;
             font-size: 2.5rem; /* Larger font size for headings */
             margin-bottom: 30px; /* Add space below the heading */
-            text-transform:capitalize;
             font-family: Impact, fantasy;
         }
+        /*h1 {
+            margin-bottom: 30px; 
+            font-family: Impact, fantasy;
+        }*/
         .option-box {
             border: 1px solid #17ADB4; /* Light grey border */
             padding: 20px;
@@ -58,18 +60,11 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-<<<<<<< HEAD
-        .wrc-logo {
-            width: 15%;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-        }
-
-=======
+        
         h1.title {
             background: cornflowerblue;
             border-bottom: solid;
+            font-size: 90px;
             padding-top: 20px;
             padding-bottom: 10px;
             padding-left: 20px;
@@ -93,19 +88,22 @@
             padding-right: 20px;
             margin-top: -15px;
         }
->>>>>>> db05d16725a6e733c99a696ddc37f01dbd912816
+        .wrc-logo {
+            width: 15%;
+            margin-right: 25px;
+        }
+
     </style>
     <script>
         setInterval(() => window.location.reload(), 15000);
     </script>
 </head>
 <body>
-<<<<<<< HEAD
-    <a href="/">
-        <img src="/static/images/wrc_logo.png" alt="WRC Logo" class="wrc-logo">
-    </a>
-    <div class="container">
-        <h1>{{ question }}</h1>
+<div class="container">
+    <h1 class="title"><img src="/static/images/wrc_logo.png" class="logo">Pollstr: <span class="subtitle"><span id="prompt">mid@web:~/></span> Ask a Mid! Live!</span></h1>
+
+    <h1 style="text-align: center;">{{ question }}</h1>
+    <div class="row">
         <div class="row">
             <div class="col-md-4">
                 <div class="option-box">
@@ -124,17 +122,6 @@
                     <p>{{ options[2] }}</p>
                     <p>Votes: {{ votes[2] }}</p>
                 </div>
-=======
-<div class="container">
-    <h1 class="title"><img src="/static/images/WRC2.png" class="logo">Pollstr: <span class="subtitle"><span id="prompt">mid@web:~/></span> Ask a Mid! Live!</span></h1>
-
-    <h1>{{ question }}</h1>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="option-box">
-                <p>{{ options[0] }}</p>
-                <p>Votes: {{ votes[0] }}</p>
->>>>>>> db05d16725a6e733c99a696ddc37f01dbd912816
             </div>
         </div>
         <div class="back-button">

@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
     <style>
-<<<<<<< HEAD
         body {
             background-color: #fcf9f4; /* Light cream background */
             font-family: 'Garamond', serif; /* Classic serif font */
@@ -46,10 +45,11 @@
             position: fixed;
             top: 20px;
             left: 20px;
-=======
+        }
         h1.title {
             background: cornflowerblue;
             border-bottom: solid;
+            font-size: 90px;
             padding-top: 20px;
             padding-bottom: 10px;
             padding-left: 20px;
@@ -72,17 +72,13 @@
             height: 90px;
             padding-right: 20px;
             margin-top: -15px;
->>>>>>> db05d16725a6e733c99a696ddc37f01dbd912816
         }
     </style>
 </head>
 <body>
-<a href="/">
-    <img src="/static/images/wrc_logo.png" alt="WRC Logo" class="wrc-logo">
-</a>
-<div class="container">
-    <h1 class="title"><img src="/static/images/WRC2.png" class="logo">Pollstr: <span class="subtitle"><span id="prompt">mid@web:~/></span> Ask a Mid! Live!</span></h1>
 
+<div class="container">
+    <h1 class="title"><img src="/static/images/wrc_logo.png" class="logo">Pollstr: <span class="subtitle"><span id="prompt">mid@web:~/></span> Ask a Mid! Live!</span></h1>
     <h1>Create New Poll</h1>
     <form action="/poll" method="POST">
         <div class="mb-3">
