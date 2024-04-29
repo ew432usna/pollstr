@@ -10,29 +10,6 @@ badger = badger2040.Badger2040()
 
 badger.set_update_speed(badger2040.UPDATE_FAST)
 
-badger.set_pen(15) #white
-badger.clear() # set the background white
-
-badger.set_pen(0) #black
-#try to join WRCE
-wlan = network.WLAN(network.STA_IF)
-wlan.active(True)
-wlan.connect('WRCE', None)
-
-mac = ubinascii.hexlify(network.WLAN().config('mac'),':').decode()
-print(mac)
-
-
-while not wlan.isconnected() and wlan.status() >=0:
-    print("waiting....")
-    time.sleep(1)
-    
-print(wlan.ifconfig()) # IP, Subnet Mask, Default Gateway, DNS Server
-
-idd = 0
-opt = ""
-resp= 0
-    
 def vote(idd, opt):
     print("button pressed!")
     response = urequests.post(f"https://pollstr.usna.wattsworth.net/poll/{idd}.json", json = {'option': opt})
@@ -54,32 +31,34 @@ def show_message(msg):
     
 
 show_message("Pollstr booting...")
+#try to join WRCE
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect('WRCE', None)
+
+while not wlan.isconnected() and wlan.status() >=0:
+    print("waiting....")
+    time.sleep(1)
+    
+print(wlan.ifconfig()) # IP, Subnet Mask, Default Gateway, DNS Server
 
 while True:
-    
-    r = urequests.get('https://pollstr.usna.wattsworth.net/poll.json')
-    
-    poll = r.content
-    string = poll.decode()
-    print(string)
-    parsed_data = json.loads(string)
-    print(parsed_data)
-    
-    print(poll)
-    
-    
-    
+    try:
+        r = urequests.get('https://pollstr.usna.wattsworth.net/poll.json')
+        
+        poll = r.content
+        string = poll.decode()
+        parsed_data = json.loads(string)
+    except:
+        time.sleep(0.5)
+        continue # try the request again
+        
     idd = parsed_data['id']
     question = parsed_data['question']
     opt1 = "A)" + parsed_data['options'][0]
     opt2 = "B)" + parsed_data['options'][1]
     opt3 = "C)" + parsed_data['options'][2]
     
-    print(idd)
-    print(question)
-    print(opt1)
-    print(opt2)
-    print(opt3)
     badger.set_pen(15) #white
     badger.clear() # set the background white
     badger.set_pen(0)
@@ -89,10 +68,9 @@ while True:
     badger.text(opt3, 10, 80)
     badger.update()
 
-    
-    
     selected_option = None # whether the vote succeeded
-    while True:
+    tick = 0
+    while tick<20:
         #wait for button press
         if badger.pressed(badger2040.BUTTON_A):            
             selected_option='A'
@@ -104,18 +82,14 @@ while True:
             selected_option='C'
             break
         time.sleep(0.5)
-     
-    show_message("Submitting your vote...")
-    
-    success=vote(idd,selected_option)
-    
-    if success:
-        show_message("Thanks for voting!")
+        tick+=1
+    if selected_option:
+        show_message("Submitting your vote...")
+        success=vote(idd,selected_option)
+        if success:
+            show_message("Thanks for voting!")
+        else:
+            show_message("Something went wrong :(")
     else:
-        show_message("Something went wrong :(")
-    
-    time.sleep(2)
-
-
-    
-  
+        show_message("Getting a new question...")
+    time.sleep(0.5)
