@@ -102,10 +102,14 @@
     <h1 class="title">
         <img src="/static/images/wrc_logo.png" alt="WRC Logo" class="wrc-logo">
     Pollstr: <span class="subtitle"><span id="prompt">mid@web:~/></span> Ask a Mid! Live!</span></h1>
+    
+    <div class="text-center">
+        <a href="/poll/new" class="btn btn-success">Add new poll!</a>
+    <div>
+    
+    <hr>
 
     <div class="row row-cols-1 row-cols-md-2">
-    <div id="polls">
-        <!-- Polls will be inserted here -->
         {% for poll in polls %}
         <div class="col mb-4">
             <div class="card">
@@ -118,8 +122,7 @@
         </div>
         {% endfor %}
     </div>
-    </div>
-    <a href="/poll/new" class="btn btn-success">Add new poll!</a>
+
     <hr>
     <b>Brought to you by the students of <b>EW432: Internet of Things</b>
 </div>
