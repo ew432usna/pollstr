@@ -11,20 +11,26 @@
             font-family: 'Garamond', serif; /* Classic serif font */
             color: #4c4c4c; /* Dark grey text */
             margin-top: 50px; /* Add some space from the top */
+            opacity: 1; /* Adjust the opacity as desired */
         }
+
         h1 {
             text-align: center;
             font-size: 2.5rem; /* Larger font size for headings */
             margin-bottom: 30px; /* Add space below the heading */
+            text-transform:capitalize;
+            font-family: Impact, fantasy;
         }
         .option-box {
-            border: 1px solid #dcdcdc; /* Light grey border */
+            border: 1px solid #17ADB4; /* Light grey border */
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 10px;
             background-color: #ffffff; /* White background */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
             transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+            text-align: center; /* Center align the text */
+            text-transform: capitalize; /* Transform text to uppercase */
         }
         .option-box:hover {
             transform: translateY(-5px); /* Lift the box slightly on hover */
@@ -41,47 +47,57 @@
             border: none;
             padding: 10px 20px;
             border-radius: 10px;
-            background-color: #bfd8ee; /* Light blue background */
+            background-color: #17ADB4; /* Light blue background */
             color: #4c4c4c; /* Dark grey text */
             font-size: 1rem;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
         }
         .back-button button:hover {
-            background-color: #d3e3f2; /* Light blue hover background */
+            background-color: #17acb46a; /* Light blue hover background */
             transform: translateY(-2px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
+        .wrc-logo {
+            width: 15%;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+        }
+
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>{{ question }}</h1>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="option-box">
-                <p>{{ options[0] }}</p>
-                <p>Votes: {{ votes[0] }}</p>
+    <a href="/">
+        <img src="/static/images/wrc_logo.png" alt="WRC Logo" class="wrc-logo">
+    </a>
+    <div class="container">
+        <h1>{{ question }}</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="option-box">
+                    <p>{{ options[0] }}</p>
+                    <p>Votes: {{ votes[0] }}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="option-box">
+                    <p>{{ options[1] }}</p>
+                    <p>Votes: {{ votes[1] }}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="option-box">
+                    <p>{{ options[2] }}</p>
+                    <p>Votes: {{ votes[2] }}</p>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="option-box">
-                <p>{{ options[1] }}</p>
-                <p>Votes: {{ votes[1] }}</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="option-box">
-                <p>{{ options[2] }}</p>
-                <p>Votes: {{ votes[2] }}</p>
-            </div>
+        <div class="back-button">
+            <a href="/">
+                <button>Back to Polls</button>
+            </a>
         </div>
     </div>
-    <div class="back-button">
-        <a href="/">
-            <button>Back to Polls</button>
-        </a>
-    </div>
-</div>
 </body>
 </html>
