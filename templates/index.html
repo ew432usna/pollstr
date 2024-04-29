@@ -6,6 +6,7 @@
     <title>All Polls</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+<<<<<<< HEAD
         body {
             background-color: #fcf9f4; /* Light cream background */
             font-family: 'Garamond', serif; /* Classic serif font */
@@ -66,14 +67,51 @@
             margin-bottom: 20px; /* Add space below the button */
         }
     </style>
+=======
+        h1.title {
+            background: cornflowerblue;
+            border-bottom: solid;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            margin-top: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .subtitle{
+            font-size: 30px;
+            font-family: monospace;
+            background: #c9d1df;
+            border-style: solid;
+            border-color: black;
+            padding-left: 10px;
+        }
+        .prompt{
+            font-weight: bold;
+        }
+        img.logo{
+            height: 90px;
+            padding-right: 20px;
+            margin-top: -15px;
+        }
+    </style>
+    <script>
+        setInterval(() => window.location.reload(), 15000);
+    </script>
+>>>>>>> db05d16725a6e733c99a696ddc37f01dbd912816
 </head>
 <body>
     <a href="/">
         <img src="/static/images/wrc_logo.png" alt="WRC Logo" class="wrc-logo">
     </a>
 <div class="container">
+<<<<<<< HEAD
     <h1>All Polls</h1>
     <div class="row row-cols-1 row-cols-md-2">
+=======
+    <h1 class="title"><img src="/static/images/WRC2.png" class="logo">Pollstr: <span class="subtitle"><span id="prompt">mid@web:~/></span> Ask a Mid! Live!</span></h1>
+    <div id="polls">
+>>>>>>> db05d16725a6e733c99a696ddc37f01dbd912816
         <!-- Polls will be inserted here -->
         {% for poll in polls %}
         <div class="col mb-4">
@@ -87,9 +125,15 @@
         </div>
         {% endfor %}
     </div>
+<<<<<<< HEAD
     <div class="text-center add-poll-button">
         <a href="/poll/new" class="btn btn-success">Add new poll!</a>
     </div>
+=======
+    <a href="/poll/new" class="btn btn-success">Add new poll!</a>
+    <hr>
+    Brought to you by the students of <b>EW432: Internet of Things</b>
+>>>>>>> db05d16725a6e733c99a696ddc37f01dbd912816
 </div>
 </body>
 </html>
