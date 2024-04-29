@@ -6,7 +6,6 @@
     <title>All Polls</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Your existing styles */
         body {
             background-color: #fcf9f4; /* Light cream background */
             font-family: 'Garamond', serif; /* Classic serif font */
@@ -64,6 +63,7 @@
         .add-poll-button {
             margin-bottom: 20px; /* Add space below the button */
         }
+   
         h1.title {
             background: cornflowerblue;
             border-bottom: solid;
@@ -101,10 +101,10 @@
 <div class="container">
     <h1 class="title">
         <img src="/static/images/wrc_logo.png" alt="WRC Logo" class="wrc-logo">
-        Pollstr: <span class="subtitle"><span id="prompt">mid@web:~/></span> Ask a Mid! Live!</span>
-    </h1>
+    Pollstr: <span class="subtitle"><span id="prompt">mid@web:~/></span> Ask a Mid! Live!</span></h1>
 
-    <div id="polls" class="row row-cols-1 row-cols-md-2">
+    <div class="row row-cols-1 row-cols-md-2">
+    <div id="polls">
         <!-- Polls will be inserted here -->
         {% for poll in polls %}
         <div class="col mb-4">
@@ -118,7 +118,7 @@
         </div>
         {% endfor %}
     </div>
-
+    </div>
     <a href="/poll/new" class="btn btn-success">Add new poll!</a>
     <hr>
     <b>Brought to you by the students of <b>EW432: Internet of Things</b>
