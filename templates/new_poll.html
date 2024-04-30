@@ -65,7 +65,14 @@
             border-style: solid;
             border-color: black;
             padding-left: 10px;
+            display: none;
         }
+        @media (min-width: 1000px) {
+            .subtitle {
+                display: inline; /* or 'block', depending on your needs */
+            }
+        }
+        
         .prompt{
             font-weight: bold;
         }
@@ -79,7 +86,7 @@
 <body>
 
 <div class="container">
-    <h1 class="title"><img src="/static/images/wrc_logo.png" class="logo">Pollstr: <span class="subtitle"><span id="prompt">mid@web:~/></span> Ask a Mid! Live!</span></h1>
+    <h1 class="title"><img src="/static/images/wrc_logo.png" class="logo">Pollstr <span class="subtitle"> Ask a Mid! Live!</span></h1>
     <h1>Create New Poll</h1>
     <form action="/poll" method="POST">
         <div class="mb-3">

@@ -57,7 +57,7 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         .wrc-logo {
-            width: 15%;
+            width: 150px;
             margin-right: 25px;
         }
         .add-poll-button {
@@ -82,7 +82,14 @@
             border-style: solid;
             border-color: black;
             padding-left: 10px;
+            display: none;
         }
+        @media (min-width: 1000px) {
+            .subtitle {
+                display: inline; /* or 'block', depending on your needs */
+            }
+        }
+        
         .prompt{
             font-weight: bold;
         }
@@ -93,7 +100,7 @@
         }
     </style>
     <script>
-        setInterval(() => window.location.reload(), 15000);
+        //setInterval(() => window.location.reload(), 15000);
     </script>
 </head>
 <body>
@@ -101,7 +108,7 @@
 <div class="container">
     <h1 class="title">
         <img src="/static/images/wrc_logo.png" alt="WRC Logo" class="wrc-logo">
-    Pollstr: <span class="subtitle"><span id="prompt">mid@web:~/></span> Ask a Mid! Live!</span></h1>
+    Pollstr <span class="subtitle">Ask a Mid! Live!</span></h1>
     
     <div class="text-center">
         <a href="/poll/new" class="btn btn-success">Add new poll!</a>
